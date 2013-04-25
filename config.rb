@@ -1,5 +1,4 @@
 activate :minify_html
-activate :gzip
 activate :livereload
 
 activate :deploy do |deploy|
