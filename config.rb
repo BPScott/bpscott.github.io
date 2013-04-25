@@ -3,7 +3,9 @@ activate :gzip
 activate :livereload
 
 activate :deploy do |deploy|
+  # As this is a user page, the page info is built off the master branch
   deploy.method = :git
+  deploy.branch = 'master'
 end
 
 
