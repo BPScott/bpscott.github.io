@@ -1,0 +1,35 @@
+/* Syntax Highlighting */
+
+.highlighttable {
+ // width: 100%;
+  @include rem('margin', 0 0 rhythm(1) 0);
+  border: 1px solid #d9d9d9;
+  background: #fff;
+
+  td {
+    padding: 0;
+  }
+
+  pre {
+    margin-bottom: 0;
+    font-size: 16px;
+    line-height: 1.5;
+    // Line numbers being off is due to line wrapping.
+    // Work out how to stop lines wrapping
+    width: 100%;
+    white-space: pre;
+    //overflow: scroll;
+  }
+
+  .linenos,
+  .highlight {
+    padding: 0 8px;
+    vertical-align: top;
+  }
+
+  .linenos {
+    border-right: solid 1px #d9d9d9;
+    text-align: right;
+  }
+
+}

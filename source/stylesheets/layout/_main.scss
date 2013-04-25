@@ -1,0 +1,70 @@
+html{
+  overflow-y: scroll;
+  min-width: 230px;
+  min-height: 100%;
+  // width:320px;
+}
+
+body {
+  color: $text-color;
+  background-color: #fbfbfb;
+}
+
+.page-wrapper,
+.page-footer-outer {
+  max-width: 624px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.page-wrapper {
+  overflow: auto;
+}
+
+.page-header {
+  @extend %cf;
+  border-bottom: 1px solid;
+
+  @include rem('margin', rhythm(1) 0);
+
+  h1 {
+    @include rem('font-size', modular-scale(2));
+    line-height: (rhythm(1) / modular-scale(2));
+
+    a, a:hover{
+      color: $text-color;
+      text-decoration: none;
+    }
+  }
+}
+
+.page-footer {
+  border-top: 1px solid;
+}
+
+.header-title {
+  float: left;
+}
+
+.header-nav {
+  float: right;
+}
+
+.copy-info {
+  @include rem('font-size', modular-scale(-1));
+  line-height: (rhythm(1) / modular-scale(-1));
+  @include rem('margin', rhythm(0.5) 0);
+}
+
+
+/* Grid */
+.grid {
+  @extend %grid;
+}
+.grid--main {
+  @extend %grid__item, %desk--two-thirds;
+}
+
+.grid--aside {
+  @extend %grid__item, %desk--one-third;
+}

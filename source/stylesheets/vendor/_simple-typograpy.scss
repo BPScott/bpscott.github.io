@@ -1,0 +1,18 @@
+$base-font-size: 16px !default;
+$base-line-height: 1.5 !default;
+$ratio: 1.61803398875 !default; // Golden Ratio
+$round-pixels: true !default;
+
+
+@function modular-scale($offset, $base-font-size: $base-font-size, $ratio: $ratio, $round-pixels: $round-pixels) {
+  @if $round-pixels == true {
+    @return round($base-font-size * pow($ratio, $offset));
+  }
+
+  @return $base-font-size * pow($ratio, $offset);
+}
+
+
+@function rhythm($multiplier: 1, $base-font-size: $base-font-size, $base-line-heigh: $base-line-height) {
+  @return $multiplier * $base-font-size * $base-line-height;
+}

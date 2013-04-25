@@ -1,0 +1,45 @@
+---
+title: Kittenify Bookmarklet
+bookmarklet: >
+  javascript:(function(){
+    ktndata = null,
+    fcb=function(d){
+      ktndata=d;
+      var p=document.getElementsByTagName('img');
+      for(var i in p){
+        p[i].width=p[i].width;
+        p[i].height=p[i].height;
+        p[i].src=d.items[Math.floor(Math.random()*(d.items.length))].media.m;
+      }
+    };
+    if(!ktndata){
+      var jp=document.createElement('script');
+      jp.setAttribute('type','text/javascript');
+      jp.setAttribute('src','http://api.flickr.com/services/feeds/photos_public.gne?tags=kitten&tagmode=any&format=json&jsoncallback=fcb');
+      document.getElementsByTagName('head')[0].appendChild(jp);
+    }
+    else{
+      fcb(ktndata);
+    }
+  })()
+---
+
+<h1>Kittenify Bookmarklet</h1>
+
+<p>Internet getting you down? Tired of reading tales of <a href="http://www.mydarkmaterials.co.uk/doom/">doom</a> and disaster?
+Ever wanted to cheer yourself up by looking at floofy kittins? Of course you have. And now you can! With this little bookmarkelet that replaces all images on the page with pictures of kittens.</p>
+
+
+<h2>How to use?</h2>
+<p>Easy, add this link to your bookmarks: <a href="<%= data.page.bookmarklet %>">Kittenify</a>, go to <a href="http://www.bbc.co.uk/">the page you want to kittenify</a> and click Kittenify! in your bookmarks.</p>
+<p>If adding the link doesn't work try adding this to your bookmarks manually:</p>
+<p><code style="font-size:0.8em"><%= data.page.bookmarklet %></code></p>
+<p>Here's a sample image for you to kittenify:</p>
+<p><img src="/images/kittenify/bobdobbs.gif" alt="Sample image" style="display:block; margin:0.8em auto;" /></p>
+
+<h2>Technical dullness</h2>
+<ul>
+  <li>This uses Flickr to look for photos tagged with &quot;kitten&quot;.</li>
+  <li>I've tested with IE 8, FF 3.0 and Opera 9.5 and all appears to be grand. Apparently IE6 doesn't like saving such a long bookmark but sod them.</li>
+  <li>There's no image size checking so your kittens might be horribly misshapen but please remember that no kittens were harmed in the making of this bookmarklet.</li>
+</ul>

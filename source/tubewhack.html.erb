@@ -1,0 +1,32 @@
+---
+title: Tubewhack
+---
+
+<h1>Tubewhack</h1>
+
+<p>Pimlico is the only London Underground station which does not contain any of the letters in the word "Badger".
+I've decided to call words or phrases like this &mdash; whose letters appear in all but a single tube station's name &mdash; &quot;Tubewhacks&quot;.</p>
+
+<p>We know badger, sandwich, morgan, hammer and mongoloids are Tubewhacks but what others are out there? Check using this here form:</p>
+
+<form action="?" id="checkphrase">
+	<div>
+		<label for="phrase">Phrase:</label> <input type="text" id="phrase" value="Badger" size="50" />
+		<input type="submit" value="Check!" />
+	</div>
+</form>
+
+<div id="results"></div>
+
+<script type="text/javascript" src="/javascripts/tubewhack.js"></script>
+<noscript>
+	<p><strong>Phrase testing is done client-side so you'll need to enable JavaScript for this to work.</strong></p>
+</noscript>
+
+
+<h2>Technical dullness</h2>
+<ul>
+  <li>Station names from <a href="http://en.wikipedia.org/wiki/List_of_London_Underground_stations">Wikipedia</a>. <a href="http://en.wikipedia.org/wiki/Closed_London_Underground_stations">Closed stations</a> are not included.</li>
+  <li>I've tested with IE 8, FF 3.6 and Opera 10.5 and all appears to be grand.</li>
+  <li>Checking is done with JavaScript so make sure you've got that enabled.</li>
+</ul>

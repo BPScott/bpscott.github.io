@@ -1,0 +1,18 @@
+/**
+ * Rems with pixel fallback for any property
+ */
+@mixin rem($property, $px-values, $baseline-px: $base-font-size) {
+  // Convert the baseline into rems
+  $baseline-rem: $baseline-px / 1rem;
+
+  // Create an empty list that we can dump values into
+  $rem-values: ();
+  @each $value in $px-values {
+    // If the value is zero, return 0
+    $rem-values: append($rem-values, if($value == 0, $value, $value / $baseline-rem));
+  }
+
+  // Output the property's px and rem values
+  #{$property}: $px-values;
+  #{$property}: $rem-values;
+}

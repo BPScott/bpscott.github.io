@@ -1,0 +1,19 @@
+.nav {
+  @extend %cf;
+  list-style: none;
+  margin-left: 0;
+
+  > li {
+    &, > a {
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+    }
+  }
+}
+
+.nav--global {
+  > li {
+    padding: 0 0.25em;
+  }
+}

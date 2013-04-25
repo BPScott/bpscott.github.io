@@ -1,0 +1,27 @@
+%headings {
+  font-weight: 100;
+  margin: 0;
+}
+
+%giga {
+  // This is cheating slightly as we are relying on line-height for the full
+  // rhythm instead the line-height should be smaller and we should have a
+  // margin-bottom so that the line-height+ margins == X rhythm blocks
+  @include rem('font-size', modular-scale(3));
+  line-height: (rhythm(3) / modular-scale(3));
+  //@include rem('margin-bottom', rhythm(0));
+  letter-spacing: -1px;
+}
+
+%mega {
+  @include rem('font-size', modular-scale(2));
+  line-height: (rhythm(2) / modular-scale(2));
+  // @include rem('margin-bottom', rhythm(0));
+  letter-spacing: -1px;
+}
+
+%kilo {
+  @include rem('font-size', modular-scale(1));
+  line-height: (rhythm(2) / modular-scale(1));
+  // @include rem('margin-bottom', rhythm(0));
+}

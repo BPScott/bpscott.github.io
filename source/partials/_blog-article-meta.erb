@@ -1,0 +1,12 @@
+<p class="article__meta">
+  Posted on
+  <time datetime="<%=current_article.date.strftime('%Y-%m-%d')%>"><%= current_article.date.strftime('%b %e %Y') %></time>
+
+<% if current_article.tags && current_article.tags.size > 0 then %>
+    <span class="article__tags">in:
+      (<% current_article.tags.each_with_index do |tag, i| %><%
+        %><%= link_to tag, tag_path(tag) %><%= ', ' unless i == current_article.tags.size - 1 %><%
+      %><% end %>)
+  </span>
+<% end %>
+</p>
