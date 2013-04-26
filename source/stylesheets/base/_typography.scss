@@ -41,3 +41,10 @@ a {
     color: $link-color-hover;
   }
 }
+
+.link-nostyle {
+  &, &:hover {
+      color: $text-color;
+      text-decoration: none;
+    }
+}
