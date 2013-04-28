@@ -20,7 +20,7 @@ ol {
   // Indent nested lists
   ul,
   ol {
-    @include rem('padding-left', modular-scale(2));
+    @include rem('padding-left', ($base-font-size * 2.5));
   }
 }
 

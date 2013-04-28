@@ -46,6 +46,18 @@ hr {
   @include rem('padding', 0 ($base-font-size * 2.5));
 }
 
+// No hanging lists on small screens, so we can reduce the global border
+@media screen and (max-width:599px) {
+  ul, ol {
+    @include rem('padding-left', ($base-font-size * 2.5));
+  }
+
+  .page-wrapper,
+  .page-footer-outer {
+    @include rem('padding', 0 ($base-font-size * 1));
+  }
+}
+
 .page-wrapper {
   overflow: auto;
 }
