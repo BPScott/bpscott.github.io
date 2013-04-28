@@ -1,3 +1,8 @@
+.article--in-list {
+  margin-bottom: -1px;
+  border-bottom: 1px solid;
+}
+
 .article__meta {
   // @include rem('font-size', modular-scale(-1));
   // line-height: (rhythm(1) / modular-scale(-1));
@@ -6,5 +11,5 @@
 }
 
 .article__title + .article__meta {
-    @include rem('margin', rhythm(-0.625) 0 rhythm(0.625) 0)
-  }
+  @include rem('margin', rhythm(-0.625) 0 rhythm(0.625) 0);
+}
