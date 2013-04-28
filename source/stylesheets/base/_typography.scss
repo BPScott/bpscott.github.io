@@ -14,14 +14,7 @@ pre {
 
 ul,
 ol {
-  // Hanging punctuation
-  padding-left: 0;
-
-  // Indent nested lists
-  ul,
-  ol {
-    @include rem('padding-left', ($base-font-size * 2.5));
-  }
+  @include rem('padding-left', $base-font-size * 2.5);
 }
 
 pre {
