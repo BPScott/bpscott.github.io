@@ -8,7 +8,7 @@ activate :minify_html
 activate :livereload
 
 activate :blog do |blog|
- blog.permalink = ":year/:title.html"
+  blog.permalink = ":year/:title.html"
   blog.sources = "articles/:year-:month-:day-:title.html"
   blog.taglink = "tags/:tag.html"
   blog.layout = "layouts/blog-article.erb"
@@ -27,6 +27,7 @@ activate :deploy do |deploy|
   # As this is a user page, the page info is built off the master branch
   deploy.method = :git
   deploy.branch = 'master'
+  deploy.clean = true
 end
 
 
@@ -67,7 +68,6 @@ set :images_dir, 'images'
 set :markdown_engine, :redcarpet
 set :markdown, {
   :fenced_code_blocks => true,
-  :autolink => true,
   :smartypants => true,
   :no_intra_emphasis => true
 }

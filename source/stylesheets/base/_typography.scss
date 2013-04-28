@@ -12,6 +12,18 @@ pre {
   @include rem('margin', 0 0 rhythm(1) 0);
 }
 
+ul,
+ol {
+  // Hanging punctuation
+  padding-left: 0;
+
+  // Indent nested lists
+  ul,
+  ol {
+    @include rem('padding-left', modular-scale(2));
+  }
+}
+
 pre {
   line-height: $base-line-height;
 }

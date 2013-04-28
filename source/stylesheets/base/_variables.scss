@@ -8,7 +8,10 @@ $use-silent-classes: true;
 
 // Colors
 $text-color: #444;
+$background-color: #fbfbfb;
+
+$selected-text-color: darken($text-color, 15%);
+$selected-background-color: darken($background-color, 15%);
 
 $link-color: #4C7EB1;
 $link-color-hover: #e60900;
-
