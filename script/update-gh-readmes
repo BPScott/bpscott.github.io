@@ -1,0 +1,26 @@
+#!/usr/bin/ruby
+#
+# Pulls in README files from named repositories so they can be rendered within
+# Middleman.
+
+require 'open-uri'
+
+repos = [
+  { :path =>"fancydir", :title => "FancyDir", :gh_user => 'bpscott', :gh_repo => 'FancyDir'}
+]
+
+
+repos.each do |repo|
+  extension = repo[:extension] ||= '.md'
+  repo_path = "#{repo[:gh_user]}/#{repo[:gh_repo]}"
+
+  readme_path = "https://raw.github.com/#{repo_path}/master/README#{extension}"
+  output_filename = "source/#{repo[:path]}.html#{extension}"
+
+  readme_front_matter = "---\ntitle: #{repo[:title]}\n---\n\n"
+  readme_content = readme_front_matter + open(readme_path).read
+
+  if readme_content then
+    File.open(output_filename, 'w') { |f| f.write readme_content }
+  end
+end

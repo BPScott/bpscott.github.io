@@ -42,7 +42,8 @@ hr {
 .page-footer-outer {
   max-width: 624px;
   margin: 0 auto;
-  padding: 0 16px;
+  // To account for the hanging indents on lists
+  @include rem('padding', 0 ($base-font-size * 2.5));
 }
 
 .page-wrapper {
@@ -50,7 +51,7 @@ hr {
 }
 
 .page-header {
-  @extend %cf;
+  overflow: auto;
   border-bottom: 1px solid;
 
   @include rem('margin', rhythm(1) 0);
