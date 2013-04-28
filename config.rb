@@ -2,7 +2,6 @@
 # Extensions
 ###
 
-activate :directory_indexes
 activate :syntax
 activate :minify_html
 activate :livereload
@@ -16,12 +15,15 @@ activate :blog do |blog|
   # blog.summary_length = 250
 
   blog.tag_template = "blog/tag.html"
-  blog.calendar_template = "blog/calendar.html"
+  blog.year_template = "blog/calendar.html"
 
   # blog.paginate = true
   # blog.per_page = 10
   # blog.page_link = "page/:num"
 end
+
+# Must go after :blog plugin
+activate :directory_indexes
 
 activate :deploy do |deploy|
   # As this is a user page, the page info is built off the master branch
