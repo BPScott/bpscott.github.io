@@ -19,7 +19,7 @@
 .linenos,
 .highlight {
   @include rem('padding', rhythm(0.25));
-  @include rem('margin', rhythm(-0.25) 0);
+  @include rem('margin', rhythm(-0.25) 0 rhythm(0.75));
 
   pre {
     margin-bottom: 0;
