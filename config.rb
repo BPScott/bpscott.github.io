@@ -4,7 +4,7 @@
 
 activate :syntax
 activate :minify_html
-activate :livereload
+# activate :livereload
 
 activate :blog do |blog|
   blog.permalink = ":year/:title.html"
