@@ -1,0 +1,485 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Reload.me.uk</title>
+  <id>http://www.reload.me.uk/</id>
+  <link href="http:///www.reload.me.uk/"/>
+  <link href="http:///www.reload.me.uk/index.xml" rel="self"/>
+  <updated>2017-04-17T17:00:00-07:00</updated>
+  <author>
+    <name>Ben Scott</name>
+  </author>
+  <entry>
+    <title>Developing in the Open</title>
+    <link rel="alternate" href="/2017/developing-in-the-open/"/>
+    <id>/2017/developing-in-the-open/</id>
+    <published>2017-04-17T17:00:00-07:00</published>
+    <updated>2017-04-17T17:00:00-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&amp;ldquo;Hey Ben what have you been working on recently?&amp;rdquo; is a question that usually
+ends in a lengthy answer about new work stuff and how I&amp;#39;m excited for the future
+but usually no code links to &lt;em&gt;show&lt;/em&gt; what I&amp;#39;ve been &lt;del&gt;playing&lt;/del&gt; working
+on. Until now at least. This is because the team behind
+&lt;a href="http://www.bbc.co.uk/programmes"&gt;bbc.co.uk/programmes&lt;/a&gt; is switching to a
+&amp;ldquo;Developing in the Open&amp;rdquo; mindset for our new projects. This is a process
+popularised by
+&lt;a href="https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable"&gt;GDS&lt;/a&gt;,
+&lt;a href="https://www.theguardian.com/info/developer-blog/2014/nov/28/developing-in-the-open"&gt;The Guardian&lt;/a&gt;,
+and &lt;a href="https://github.com/financial-times"&gt;The Financial Times&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;The BBC has a long tradition of publishing &lt;a href="http://www.bbc.co.uk/opensource"&gt;Open Source&lt;/a&gt;
+software and has used Developing in the Open for internal-use libraries
+such as Sport&amp;#39;s &lt;a href="https://github.com/bbc/grandstand"&gt;Grandstand&lt;/a&gt; CSS framework,
+but I think this might be the first instance of opening up the application code
+that is used to directly power BBC systems.&lt;/p&gt;
+
+&lt;p&gt;Here&amp;#39;s a little primer on what that means and what the team had to go through to
+get to this point.&lt;/p&gt;
+
+&lt;h2&gt;What is Developing in the Open?&lt;/h2&gt;
+
+&lt;p&gt;Developing in the Open is having your source code publicly accessible and
+licensed and thus available to be seen and used by all. This is very similar to
+the traditional model you think of when you hear &amp;ldquo;Open Source&amp;rdquo;, however there is
+a crucial difference. Open Source is for projects that you expect other people
+to use and contribute to, while Developing in the Open offers no such
+expectation.&lt;/p&gt;
+
+&lt;p&gt;As the code we are publicising is specifically for our team&amp;#39;s needs, nobody
+else would find value in copying the whole thing verbatim and thus wouldn&amp;#39;t be
+interested in providing patches. Though I&amp;#39;m sure some people will make some
+typo fixes in our READMEs so they get marked as having contributed to a BBC
+repo. However that doesn&amp;#39;t mean we should hide our code away - there is still
+value in small portions of the app: a reusable CSS utility, or how to structure
+a set of domain models would be useful things that other people can see and
+make use of.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s an inversion of the classical belief that things should be hidden by
+default - instead lets make things visible by default and only hide that which
+is sensitive. If something isn&amp;#39;t worth selling, then why not offer it for free?&lt;/p&gt;
+
+&lt;h2&gt;Why Develop in the Open?&lt;/h2&gt;
+
+&lt;p&gt;The big, selfish reason is a sense of pride. We&amp;#39;re working on applications
+we&amp;#39;re proud of, both in terms of output and how they&amp;#39;re put together. We should
+be able to show the world what we&amp;#39;ve made.&lt;/p&gt;
+
+&lt;p&gt;Occasionally we come up with something we think is worth sharing, such as
+&lt;a href="http://codepen.io/BPScott/pen/NGPMQQ"&gt;a CSS utility to deal with image ratios&lt;/a&gt;,
+&lt;a href="http://codepen.io/BPScott/pen/QbXBjo"&gt;a neat naming convention for grid width classes&lt;/a&gt;,
+or even a &lt;a href="https://www.youtube.com/watch?v=qSrM411MD8A"&gt;methodology for structuring a design system&lt;/a&gt;
+and having our code be open allows us to show people those things within the
+context of our applications, in addition to creating toy demo examples.&lt;/p&gt;
+
+&lt;p&gt;It helps improve our code quality. We have to be stricter about following
+best practices instead of giving into the temptation of getting sloppy and we&amp;#39;ll
+feel more compelled to produce higher quality code / commit messages if we know
+there&amp;#39;s a chance more people shall read what we produce.&lt;/p&gt;
+
+&lt;p&gt;The Ministry of Justice recently put out a blog post about
+&lt;a href="https://mojdigital.blog.gov.uk/2017/02/21/why-we-code-in-the-open/"&gt;why they code in the open&lt;/a&gt;
+that covers a couple of other pros.&lt;/p&gt;
+
+&lt;h2&gt;Due Diligence&lt;/h2&gt;
+
+&lt;p&gt;Moving to an open by default model does have some risks. You need to be more
+careful about how you handle sensitive data such as passwords, API keys and
+information that may give malicious outsiders too much information. Ideally you
+should already be mindful about these things - storing secrets in a private
+place that is then merged with your public code using
+&lt;a href="https://12factor.net/config"&gt;environment variables&lt;/a&gt; or some other mechanism as
+part of your deployment process.&lt;/p&gt;
+
+&lt;p&gt;Ensuring nothing sensitive gets into the repo is an ongoing process and should
+anything sensitive be accidentally committed then the secret should be
+revoked and changed immediately. Fortunately we are petty good at this already,
+our secrets are stored in a separate system - Cosmos - the BBC&amp;#39;s
+in-house deployment tooling.&lt;/p&gt;
+
+&lt;p&gt;As we are opening up projects that have already been in active development we
+had to go audit the history of the project to ensure nothing sensitive existed
+in the repo.&lt;/p&gt;
+
+&lt;p&gt;We found no passwords but we stored our AWS infrastructure configuration -
+&lt;a href="https://aws.amazon.com/cloudformation/"&gt;CloudFormation templates&lt;/a&gt; and the
+&lt;a href="https://github.com/cloudtools/troposphere"&gt;Troposphere&lt;/a&gt; config that builds them
+as part of the repository. While this information is not instantly recognisable
+as
+sensitive - it is a template we fill with precise values at a later point - we
+decided that there is no value in exposing this information. The
+templates are equivalent to a blueprint of a house - any potential bad-actor
+would be able to work it out should they get inside, but that doesn&amp;#39;t mean we
+should tell them the layout up front. This configuration was purged from our git
+history using &lt;code&gt;git filter-branch&lt;/code&gt;, following
+&lt;a href="https://help.github.com/articles/removing-sensitive-data-from-a-repository/"&gt;GitHub&amp;#39;s guide for removing sensitive data&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;GDS have wrote a couple of articles about other things to consider when opening
+up a code base and when it might not be appropriate:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://www.gov.uk/service-manual/technology/making-source-code-open-and-reusable"&gt;GDS service manual on making code open&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gds.blog.gov.uk/2014/10/08/when-is-it-ok-not-to-open-all-source-code/"&gt;When is it ok not to open all source code?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://gdstechnology.blog.gov.uk/2016/01/26/working-out-how-to-open-up-the-register-to-vote-code/"&gt;Working out how to open up the Register to Vote code&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Licensing&lt;/h2&gt;
+
+&lt;p&gt;By default a person (or team) retains the rights to their own work and thus
+nobody else may used that work. You need to explicitly include a
+LICENSE file in your repository to loosen or change those rights if you want
+other people to be able to use your work without fear of repercussion.
+&lt;a href="https://choosealicense.com/"&gt;choosealicence.com&lt;/a&gt; provides a list of licenses
+suitable for open-source that allows other people to use your work, roughly
+ranked in order of restrictiveness.&lt;/p&gt;
+
+&lt;p&gt;For the my team&amp;#39;s projects we wanted to allow anybody to be able to use our
+code in any project. We don&amp;#39;t want a viral copyleft license like
+&lt;a href="https://choosealicense.com/licenses/agpl-3.0/"&gt;AGPL&lt;/a&gt; that enforces any project
+that takes code from our repo to also be openly licensed under the same terms.
+Making a project have to change its license if they wish to use a neat CSS
+pattern we created is unreasonably heavy handed.&lt;/p&gt;
+
+&lt;p&gt;We also want to retain the rights to any patentable work. Software patents are
+idiotic, but by us asserting that we own the right to patent anything we
+produce, we stop somebody else taking our work and patenting
+it (and profiting off it) themselves.&lt;/p&gt;
+
+&lt;p&gt;The license we chose is the
+&lt;a href="https://choosealicense.com/licenses/apache-2.0/"&gt;Apache 2.0 License&lt;/a&gt;. This
+offers us patent protection, which its nearest sibling the
+&lt;a href="https://choosealicense.com/licenses/mit/"&gt;MIT License&lt;/a&gt; does not - this is
+pretty much the only difference between the two. It also does not enforce a
+license on any projects that use any of our code. This is the &amp;ldquo;standard&amp;rdquo; license
+that be BBC uses for its open-source works and also what the
+&lt;a href="https://github.com/guardian/frontend"&gt;Guardian&lt;/a&gt; uses for its webapp code.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;A list of our public repositories can be found on GitHub, tagged with
+&lt;a href="https://github.com/search?q=topic%3Abbc-programmes+org%3Abbc&amp;amp;type=Repositories"&gt;bbc&amp;#8209;programmes&lt;/a&gt;.
+Of particular note right now are:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="https://github.com/bbc/programmes-pages-service"&gt;programmes-pages-service&lt;/a&gt; -
+A PHP library containing our Database schema, domain models and tools
+to request data from our Database. Our new model layer.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bbc/programmes-clifton"&gt;programmes-clifton&lt;/a&gt; - A JSON API
+powered by Symfony 3, using programmes-pages-service. It is a drop-in
+replacement for a legacy API, so we can continue to produce pages using the
+the existing &lt;a href="http://www.bbc.co.uk/programmes"&gt;www.bbc.co.uk/programmes&lt;/a&gt;
+frontend while we work on its replacement.&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/bbc/programmes-frontend"&gt;programmes-frontend&lt;/a&gt; - The new
+Symfony 3 powered web app that shall eventually power
+&lt;a href="http://www.bbc.co.uk/programmes"&gt;www.bbc.co.uk/programmes&lt;/a&gt;. This is very,
+very work-in-progress right now and we&amp;#39;re still working out how it&amp;#39;ll all
+fit together.&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Bower vs. npm for packaging Sass</title>
+    <link rel="alternate" href="/2014/bower-vs-npm-for-packaging-sass/"/>
+    <id>/2014/bower-vs-npm-for-packaging-sass/</id>
+    <published>2014-07-31T17:00:00-07:00</published>
+    <updated>2014-07-31T17:00:00-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;Package managers for the front end. Fun eh? I&amp;#39;m about to be playing with
+creating a modular CSS framework that needs to be shared across applications,
+so I figured now would be a good time to investigate the tools available.
+As nobody else seems to have done this with a specific eye to CSS I might
+as well write about it too. Here is my use-case:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;I&amp;#39;m building a CSS framework, written in Sass (though this investigation&amp;#39;s
+outcome would apply to all CSS preprocessors).&lt;/li&gt;
+&lt;li&gt;I&amp;#39;ll have some fundamental mixins and functions, which shall be used by
+multiple components, these components shall then be included into my
+application.&lt;/li&gt;
+&lt;li&gt;My build pipeline shall be using Grunt.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;There are two package managers on my shortlist: npm and Bower. Both are generic
+package managers. Both make you specify your dependencies in json files. Both
+install their dependencies into a folder within your application. At first
+glance they are very similar and my initial gut feeling was &amp;ldquo;if I&amp;#39;m already
+using npm for Grunt then why do I need Bower?&amp;rdquo;. Why complicate the project with
+an additional package manager? There must be something I&amp;#39;m missing.&lt;/p&gt;
+
+&lt;p&gt;The key difference between the two lies in &lt;a href="http://stackoverflow.com/questions/18641899/difference-between-bower-and-npm/18652918#18652918"&gt;how they store dependent packages&lt;/a&gt;.
+Bower has a flat listing, while npm uses a nested hierarchy. To demonstrate
+this difference lets use a couple of hypothetically named packages, that map
+neatly onto a real world example used by the Guardian:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Application - your app (e.g. The Guardian website) - which depends on:&lt;/li&gt;
+&lt;li&gt;Component - a generic reusable CSS object (e.g. &lt;a href="https://github.com/guardian/guss-layout"&gt;guss-layout&lt;/a&gt;) -
+which depends on:&lt;/li&gt;
+&lt;li&gt;Helper - a selection of utility Sass mixins / functions (e.g. &lt;a href="https://github.com/guardian/sass-mq"&gt;sass-mq&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This is a drastically simplified example with a single component and helper,
+but think about how this can expand when there is multiple component packages
+each depending on various helper packages.&lt;/p&gt;
+
+&lt;h2&gt;Bower&amp;#39;s flat listing&lt;/h2&gt;
+
+&lt;p&gt;Bower flattens your dependency graph and installs all dependencies at the same
+level, so after running &lt;code&gt;bower install&lt;/code&gt; the application folder would
+like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight plaintext"&gt;&lt;code&gt;|--- bower_components
+|    |--- component
+|    |    |--- _component.scss
+|    |--- helper
+|    |    |--- _helper.scss
+|--- bower.json
+|--- styles.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is really simple, but it can potentially pose a major problem - dependency
+hell, which can occur when multiple components rely on different versions of the
+same helper. Because Bower does not allow installing two versions of the same
+package everything grinds to a halt.&lt;/p&gt;
+
+&lt;p&gt;Bower&amp;#39;s flat listing means that the path to all of the app&amp;#39;s dependencies are
+one level deep so the app&amp;#39;s &lt;code&gt;styles.css&lt;/code&gt; would look like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight scss"&gt;&lt;code&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'bower_components/helper/helper'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'bower_components/compoent/component'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This can be tidied up by adding &lt;code&gt;bower_components&lt;/code&gt; to the Sass load_path to save
+repeating it every time:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight scss"&gt;&lt;code&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'helper/helper'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'compoent/component'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Very neat and tidy.&lt;/p&gt;
+
+&lt;h2&gt;Npm&amp;#39;s dependency tree&lt;/h2&gt;
+
+&lt;p&gt;Npm keeps the dependency tree intact, installing each package&amp;#39;s dependencies
+into  a &lt;code&gt;node_modules&lt;/code&gt; folder within that package, so after running
+&lt;code&gt;npm install&lt;/code&gt; the application folder would look like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight plaintext"&gt;&lt;code&gt;|--- node_modules
+|    |--- component
+|    |    |--- _component.scss
+|    |    |--- node_modules
+|    |    |    |--- helper
+|    |    |    |    |--- _helper.scss
+|--- package.json
+|--- styles.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This layout is a bit more complex than Bower&amp;#39;s flat listing, but it avoids
+dependency hell as each component is responsible for its own dependencies rather
+than having them all merged into the same level.&lt;/p&gt;
+
+&lt;p&gt;This nested dependency graph means the app&amp;#39;s stylesheet&amp;#39;s &lt;code&gt;@imports&lt;/code&gt; end up
+looking a little uglier than the Bower version:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight scss"&gt;&lt;code&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'node_modules/component/node_modules/helper/helper'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'node_modules/compoent/component'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All this nesting means there isn&amp;#39;t much value in adding &lt;code&gt;node_modules&lt;/code&gt; to the
+load path as there is still a load of node_modules references at lower levels
+littering the &lt;code&gt;@import&lt;/code&gt; paths anyway.&lt;/p&gt;
+
+&lt;h2&gt;Unavoidable Dependency Hell&lt;/h2&gt;
+
+&lt;p&gt;The thing is though, npm&amp;#39;s resolution to dependency hell works great for JS
+modules where you can scope the inclusion of a particular version of a helper
+to a particular component. Sass has no such scoping though. You can only import
+files into the global scope which means that any mixins and functions contained
+within them also live in the global scope. Sass does not complain about
+overwriting an existing mixin or function, which can lead to subtle and
+insidious bugs when one version of a helper overwrites a different one and gets
+used within a component that does not support it.&lt;/p&gt;
+
+&lt;p&gt;It&amp;#39;s a potential minefield and I can&amp;#39;t come up with a way out of this mismatched
+dependency thing in Sass other than being careful not to fall prey to it in the
+first place. Which can be done by being careful about not breaking backwards
+compatibility in your helper&amp;#39;s API, or when you do inevitably break it, you have
+to upgrade everything that depends on that helper all at the same time.
+It&amp;#39;s a sucky problem but really your helpers should be so simple that you will
+not need to update them in a way that breaks prior expectations anyway.
+As the old joke goes: &amp;ldquo;Doctor doctor, it hurts when I do &lt;strong&gt;this&lt;/strong&gt;&amp;rdquo; &amp;ldquo;Well, don&amp;#39;t
+do it then&amp;rdquo;. Not got a better solution that the utterly unhelpful &amp;ldquo;you just need
+to &lt;strong&gt;know&lt;/strong&gt; when you&amp;#39;re about to do it wrong&amp;rdquo;, sorry.&lt;/p&gt;
+
+&lt;p&gt;So, npm&amp;#39;s nested dependency tree is not actually a feature that is relevant to
+writing a Sass framework anyway as Sass does not support that sort of
+scoping. Which means that Bower is looking a lot nicer due to its simpler
+folder structure (as npm&amp;#39;s apparent complexity does not help solve anything
+in Sass-land) and its ability to give bit of sugar around load paths.
+Balls, this wasn&amp;#39;t the answer I was hoping for, I don&amp;#39;t want to require a second
+package manager. What if I can make npm use a flat folder structure like Bower?&lt;/p&gt;
+
+&lt;h2&gt;NPM Peer Dependencies&lt;/h2&gt;
+
+&lt;p&gt;What if I fiddle with that dependency graph a little bit. What if I say that
+a component should not be responsible for loading in the helpers it needs, but
+instead should trust that the application has already loaded a compatible
+version of the helper that is available for the component to use. It means your
+components break if you do not include that helper in your application&amp;#39;s scss
+file but it seems like a small price to pay for ensuring you are only pulling in
+a single version of your helpers. It sounds daft and horrible but it might get
+us out of this.&lt;/p&gt;
+
+&lt;p&gt;Here is the revised dependency chain, where the application explicitly states
+that it requires Component and Helper, and Component hints that it needs a
+specific version of Helper:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Application - your app (e.g. The Guardian website) - which depends on:
+
+&lt;ul&gt;
+&lt;li&gt;Component (hinted: I need Helper to be included before me)&lt;/li&gt;
+&lt;li&gt;Helper&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;NPM has support for this hinting of things a component needs, but never calls
+directly as a feature called &lt;a href="http://blog.nodejs.org/2013/02/07/peer-dependencies/"&gt;peer dependencies&lt;/a&gt;.
+By specifying the helper as a peer dependency npm shall throw a error if two
+components attempt to rely on two different versions of a single helper.&lt;/p&gt;
+
+&lt;p&gt;The component&amp;#39;s &lt;code&gt;package.json&lt;/code&gt; would look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"component"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;"version"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"1.0.0"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;"dependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt;
+  &lt;span class="s2"&gt;"devDependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt;
+  &lt;span class="s2"&gt;"peerDependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"helper"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"~1.0.0"&lt;/span&gt;
+  &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The app&amp;#39;s &lt;code&gt;package.json&lt;/code&gt; would look like this:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight javascript"&gt;&lt;code&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="s2"&gt;"name"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"myApp"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+  &lt;span class="s2"&gt;"dependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s2"&gt;"helper"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"~1.0.0"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="s2"&gt;"component"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;"~1.0.0"&lt;/span&gt;
+  &lt;span class="p"&gt;},&lt;/span&gt;
+  &lt;span class="s2"&gt;"devDependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{},&lt;/span&gt;
+  &lt;span class="s2"&gt;"peerDependencies"&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you run &lt;code&gt;npm install&lt;/code&gt; in your application&amp;#39;s tree shall look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight plaintext"&gt;&lt;code&gt;|--- node_modules
+|    |--- component
+|    |    |--- _component.scss
+|    |--- helper
+|    |    |--- _helper.scss
+|--- package.json
+|--- styles.scss
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;And thus your app&amp;#39;s stylesheet would look like:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre class="highlight scss"&gt;&lt;code&gt;&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'node_modules/helper/helper'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;@import&lt;/span&gt; &lt;span class="s1"&gt;'node_modules/compoent/component'&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Currently peer dependencies are installed automatically and npm throws an error
+when packages want to install conflicting versions of a peer dependency, so we
+don&amp;#39;t really need to explicitly specify them in the application&amp;#39;s package.json.
+However the npm maintainers &lt;a href="https://github.com/npm/npm/issues/5080#issuecomment-40771461"&gt;don&amp;#39;t like the idea of peer dependencies in this form&lt;/a&gt;.
+They would rather change it so that peerDependencies are not installed
+automatically and that npm would warn rather than error when there are
+peer dependency conflicts. I would rather be a bit more explicit in the
+application&amp;#39;s package.json to be ready for that impending change. So now we have
+that flat Bower-like layout that we were hoping for, at the expense of having to
+write a little more in our package.json manifest file. I&amp;#39;m pretty happy with
+that.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;The more I sit and thing about this, the more I think that using npm with
+peerDependencies is a good idea. It is not &lt;strong&gt;explicitly&lt;/strong&gt; what peerDependencies
+was originally envisioned for, but I think it seems like a good ideological
+fit and certainly appears to solve the problem - while keeping build-time complexity
+down thanks to not needing the overhead of Bower. &lt;a href="https://twitter.com/BPScott"&gt;Please tell me if I&amp;#39;m crazy&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Powered By Middleman</title>
+    <link rel="alternate" href="/2013/powered-by-middleman/"/>
+    <id>/2013/powered-by-middleman/</id>
+    <published>2013-04-25T17:00:00-07:00</published>
+    <updated>2013-04-25T17:00:00-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;I started using static site generators some time last year, beginning with
+probably the most well known: &lt;a href="http://jekyllrb.com/"&gt;Jekyll&lt;/a&gt;, which powers
+GitHub Pages. I found it ideal for creating simple sites with no need for
+interactivity that can be deployed anywhere (due to being pure html/css/js)
+while still allowing me control over the build process and asset optimisation.&lt;/p&gt;
+
+&lt;p&gt;Jekyll&amp;#39;s focus is on being minimal, lean and slightly opinionated and I was
+getting tired of having to implement functionality I wanted as plugins. If only
+there was some tool that concerned itself with front-end best practices like
+concatenation and minification of CSS and JavaScript and offered tooling like
+LiveReload as standard&amp;hellip;&lt;/p&gt;
+
+&lt;h2&gt;Enter Middleman&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href="http://middlemanapp.com/"&gt;Middleman&lt;/a&gt; is a full-fat static site generator that
+cares about optimisation and developer joy out of the box (or via offical
+extensions). A quick list of things that I had to implement in Jekyll that are
+easy in Middleman:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://sass-lang.com/"&gt;Sass&lt;/a&gt; and &lt;a href="http://compass-style.org/"&gt;Compass&lt;/a&gt; support
+is standard thanks to the Sprockets asset pipeline.&lt;/li&gt;
+&lt;li&gt;JavaScript concatentation and minification is also handled by Sprockets.&lt;/li&gt;
+&lt;li&gt;HTML minification is handled by
+&lt;a href="https://github.com/middleman/middleman-minify-html"&gt;middleman-minify-html&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Deployment to GitHub Pages (or ftp/rsync) is handled by
+&lt;a href="https://github.com/tvaughan/middleman-deploy"&gt;middleman-deploy&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Live reload is handled by
+&lt;a href="https://github.com/middleman/middleman-livereload"&gt;middleman-livereload&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Naturally this site is built using Middleman and published onto GitHub Pages,
+and the source to generate it is available on
+&lt;a href="https://github.com/BPScott/bpscott.github.io"&gt;my GitHub account&lt;/a&gt;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Tubewhack</title>
+    <link rel="alternate" href="/2010/tubewhack/"/>
+    <id>/2010/tubewhack/</id>
+    <published>2010-03-12T16:00:00-08:00</published>
+    <updated>2010-03-12T16:00:00-08:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;em&gt;This is a backdated post from way back in the day&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Based on a suggestion in &lt;a href="http://www.b3ta.com/newsletter/issue419/"&gt;b3ta newsletter #419&lt;/a&gt; I have created &lt;a href="/tubewhack"&gt;Tubewhack&lt;/a&gt;;
+a tool that lets you find words whose letters appear in a single tube station name.
+For instance: Pimlico is the only Underground station which does not contain any of the letters in the word &amp;ldquo;badger&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;Credit for the name goes to &lt;a href="http://twitter.com/djmarland"&gt;@djmarland&lt;/a&gt; as Tubewhack is considerably more succinct than &amp;ldquo;Words Not Contained In Tube Names&amp;rdquo;.&lt;/p&gt;
+</content>
+  </entry>
+  <entry>
+    <title>Kittenify Bookmarklet</title>
+    <link rel="alternate" href="/2009/kittenify-bookmarklet/"/>
+    <id>/2009/kittenify-bookmarklet/</id>
+    <published>2009-08-06T17:00:00-07:00</published>
+    <updated>2009-08-06T17:00:00-07:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;&lt;em&gt;This is a backdated post from way back in the day&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Based on a suggestion in &lt;a href="http://www.b3ta.com/newsletter/issue390/"&gt;b3ta newsletter #390&lt;/a&gt; I have created &lt;a href="/kittenify"&gt;Kittenify&lt;/a&gt;;
+a little bookmarklet that replaces all images on the current page with pictures of kittens pulled from Flickr.&lt;/p&gt;
+
+&lt;p&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;One Week Later&lt;/strong&gt;: WOO and YAY I&amp;#39;ve made it into &lt;a href="http://www.b3ta.com/newsletter/issue391/"&gt;b3ta newsletter #391&lt;/a&gt; twice.
+Once for the bookmarklet itself, and again for getting b3ta a bit of media coverage as Kittenfy appeared in both the
+&lt;a href="http://theridiculant.metro.co.uk/2009/08/kittens-kittens-everywhere.html"&gt;online&lt;/a&gt; and &lt;a href="http://www.flickr.com/photos/robmanuel/3807086473"&gt;print&lt;/a&gt; editions of the Metro newspaper.&lt;/p&gt;
+</content>
+  </entry>
+</feed>
