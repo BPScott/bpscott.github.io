@@ -6,7 +6,8 @@
 require 'open-uri'
 
 repos = [
-  { :path =>"fancydir", :title => "FancyDir", :gh_user => 'bpscott', :gh_repo => 'FancyDir'}
+  { :path =>"fancydir", :title => "FancyDir", :gh_user => 'bpscott', :gh_repo => 'FancyDir'},
+  { :path =>"stylelint-prettier", :title => "Stylelint-Prettier", :gh_user => 'bpscott', :gh_repo => 'stylelint-prettier'},
 ]
 
 
