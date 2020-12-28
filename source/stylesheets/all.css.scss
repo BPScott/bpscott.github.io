@@ -7,12 +7,9 @@
 @import 'vendor/simple-typograpy';
 @import 'vendor/rem';
 @import 'vendor/normalize';
-@import 'vendor/csswizardry-grids';
 @import 'vendor/github-pygments';
 
 // Common
-@import 'base/mixins';
-@import 'base/extends';
 @import 'base/extends-typography';
 
 // Base
@@ -23,5 +20,4 @@
 @import 'layout/blog-article';
 
 // Objects
-@import 'object/nav';
 @import 'object/highlight';
