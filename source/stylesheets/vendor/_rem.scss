@@ -12,7 +12,6 @@
     $rem-values: append($rem-values, if($value == 0, $value, $value / $baseline-rem));
   }
 
-  // Output the property's px and rem values
-  #{$property}: $px-values;
+  // Output the property's rem values
   #{$property}: $rem-values;
 }

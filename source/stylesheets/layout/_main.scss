@@ -50,7 +50,9 @@ hr {
 }
 
 .page-header {
-  @extend %cf;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   border-bottom: 1px solid;
 
   @include rem('margin', rhythm(1) 0);
@@ -65,37 +67,35 @@ hr {
   }
 }
 
-.page-footer {
-  border-top: 1px solid;
+.page-content {
+  border-bottom: 1px solid;
 }
 
 .header-title {
-  float: left;
+  margin-right: 1em;
 }
 
 .header-nav {
-  float: right;
+  list-style: none;
+  margin-left: -0.5em;
+  padding-left: 0;
+  display: flex;
+
+  li {
+    padding-left: 0.5em;
+  }
+
+  li, a {
+    display: inline-block;
+  }
 }
+
 
 .copy-info {
   @include rem('font-size', modular-scale(-1));
   line-height: (rhythm(1) / modular-scale(-1));
   @include rem('margin', rhythm(0.5) 0);
 }
-
-
-/* Grid */
-.grid {
-  @extend %grid;
-}
-.grid--main {
-  @extend %grid__item, %desk--two-thirds;
-}
-
-.grid--aside {
-  @extend %grid__item, %desk--one-third;
-}
-
 
 /* Bigger screen trumps */
 @media screen and (min-width:600px) {
@@ -127,14 +127,14 @@ hr {
       margin-left: -24px;
       background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABZ0lEQVQ4ja3UvUqdQRAG4EdN/ElhioAgit6BjYVtCsEyBi9BLIImCjYqgQhegKVNCisxJKQwwR8U0gmKoLmEKAgK/iSCJI1a7B6yHr/VA54XFr795p13Zmd3hiqj5h5bMwbQjU404hA/8BV/MI4ejEVbIerwHpe4zqxzLCX7yZzYM2yUOZ/hZ1xnmQDTRWJPsJ6QdvAyZlxCPZYrFZxJCF/QUMAZrjTDVv9rtpsRg08ZwZH0mDCIpvg9gX8ZwVFsJ36EC5ovJ36PkfZRmxGrCCXnFeHIH3D1GMFqYBAneFMNsTocCOX6xu3iNmAI7cm/C3zEUUawL+FvlhvfKn4SixmxRqF7rmPgFm7f6IuM453IUWwBXXE/g+Ny0nRBdutCu5XwFK+wl3BW08TSGhahV6jfvjDqOvA8sa/htcxTm0qiLuF3QcaldYp3CpogHbBtmBUG6FzMpF8YoB1R6Be28Bl/HzhddXADrFB4NAulVSEAAAAASUVORK5CYII=') 0 1px no-repeat;
       content: ' ';
-      @include vendor(transform, rotate(0deg));
-      @include vendor(transform-origin, 10px 11px);
-      @include vendor(transition, all 0s linear);
+      transform: rotate(0deg);
+      transform-origin: 10px 11px;
+      transition: all 0s linear;
     }
 
     &:hover:before {
-      @include vendor(transform, rotate(360deg));
-      @include vendor(transition, all 1s linear);
+      transform: rotate(360deg);
+      transition: all 1s linear;
     }
   }
 }
