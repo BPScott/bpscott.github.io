@@ -1,15 +1,14 @@
 source 'https://rubygems.org'
 
-gem "middleman", "~>3.4"
-gem "middleman-blog", "~>3.5"
-gem "middleman-deploy", "~> 1.0"
-gem 'middleman-syntax', "~> 3.0"
+gem "middleman", "~>4.3.11"
+gem "middleman-blog", "~>4.0.3"
+gem 'middleman-syntax', "~> 3.2"
 gem "middleman-minify-html", "~>3.4"
 gem "middleman-livereload", "~>3.4"
 
 # For feed.xml.builder
-gem "builder", "~> 3.0"
+gem "builder", "~> 3.2"
 
 # For additional markdown magic
-gem "redcarpet", "~>2.2.2"
+gem "redcarpet", "~>3.5"
 

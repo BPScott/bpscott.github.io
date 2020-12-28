@@ -125,7 +125,7 @@ hr {
       width: 20px;
       padding-left: 4px;
       margin-left: -24px;
-      background: inline-image('reload-logo.png') 0 1px no-repeat;
+      background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABmJLR0QA/wD/AP+gvaeTAAABZ0lEQVQ4ja3UvUqdQRAG4EdN/ElhioAgit6BjYVtCsEyBi9BLIImCjYqgQhegKVNCisxJKQwwR8U0gmKoLmEKAgK/iSCJI1a7B6yHr/VA54XFr795p13Zmd3hiqj5h5bMwbQjU404hA/8BV/MI4ejEVbIerwHpe4zqxzLCX7yZzYM2yUOZ/hZ1xnmQDTRWJPsJ6QdvAyZlxCPZYrFZxJCF/QUMAZrjTDVv9rtpsRg08ZwZH0mDCIpvg9gX8ZwVFsJ36EC5ovJ36PkfZRmxGrCCXnFeHIH3D1GMFqYBAneFMNsTocCOX6xu3iNmAI7cm/C3zEUUawL+FvlhvfKn4SixmxRqF7rmPgFm7f6IuM453IUWwBXXE/g+Ny0nRBdutCu5XwFK+wl3BW08TSGhahV6jfvjDqOvA8sa/htcxTm0qiLuF3QcaldYp3CpogHbBtmBUG6FzMpF8YoB1R6Be28Bl/HzhddXADrFB4NAulVSEAAAAASUVORK5CYII=') 0 1px no-repeat;
       content: ' ';
       @include vendor(transform, rotate(0deg));
       @include vendor(transform-origin, 10px 11px);

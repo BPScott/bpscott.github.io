@@ -16,3 +16,16 @@ $round-pixels: true !default;
 @function rhythm($multiplier: 1, $base-font-size: $base-font-size, $base-line-heigh: $base-line-height) {
   @return $multiplier * $base-font-size * $base-line-height;
 }
+
+
+@function pow($number, $exponent) {
+  $value: 1;
+
+  @if $exponent > 0 {
+    @for $i from 1 through $exponent {
+      $value: $value * $number;
+    }
+  }
+
+  @return $value;
+}
