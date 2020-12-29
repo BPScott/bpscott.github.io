@@ -1,17 +1,21 @@
-Reload.me.uk
-============
+# Reload.me.uk
 
-Middleman powered source for <http://reload.me.uk>
+Middleman powered source for <http://www.reload.me.uk>
 
 ## Setup
 
-    bundle install
+```sh
+bundle install
+```
 
 ## Running the dev server
 
-    bundle exec middleman
+```sh
+bundle exec middleman
+```
 
 ## Deploying
 
-    bundle exec middleman build --clean
-    bundle exec middleman deploy
+```sh
+bundle exec rake publish BRANCH_NAME=master
+```
