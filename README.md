@@ -17,5 +17,6 @@ bundle exec middleman
 ## Deploying
 
 ```sh
-bundle exec rake publish BRANCH_NAME=master
+rm -rf build
+bundle exec rake publish
 ```
